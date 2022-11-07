@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间
+-->
+<mapper namespace="com.sy.mapper.OrderitemMapper">
+
+    <delete id="DeleteById">
+        delete from orderitem where id = #{id};
+    </delete>
+
+    <insert id="Add">
+        insert into orderitem(id,ordersid,productid,quantity)
+        values (#{id},#{ordersid},#{productid},#{quantity})
+    </insert>
+    <delete id="DeleteByIds">
+        delete  from orderitem where in(?,?,?)
+<foreach collection="ids" item="id" separator="," open="(" close=")">
+    #{id}
+</foreach>
+    </delete>
+
+</mapper>
